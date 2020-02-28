@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     private ImageView homeLogo;
     //@NotEmpty
     private  ImageView awayLogo;
+    Uri imageUri = null;
 
     Bitmap bitmapAway ; // store the image in your bitmap
     Bitmap bmpHome ;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         if(requestCode == REQUEST_CODE_HOME_LOGO){
             if(data!= null){
                 try{
-                    Uri imageUri = data.getData();
+                    imageUri = data.getData();
                     bmpHome = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 
                     homeLogo.setImageBitmap(bmpHome);
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         else if(requestCode == REQUEST_CODE_AWAY_LOGO){
             if(data!= null){
                 try{
-                    Uri imageUri = data.getData();
+                    imageUri = data.getData();
                     bitmapAway = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 
                     awayLogo.setImageBitmap(bitmapAway);
