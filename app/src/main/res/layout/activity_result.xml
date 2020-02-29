@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_winner"
+        android:id="@+id/tv_winner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name Of Winning Team"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.17" />
 
     <TextView
-        android:id="@+id/text_scorer"
+        android:id="@+id/tv_scorer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Scorer"

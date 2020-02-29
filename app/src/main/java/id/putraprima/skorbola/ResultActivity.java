@@ -6,22 +6,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import id.putraprima.skorbola.model.Model;
+
 public class ResultActivity extends AppCompatActivity {
 
-    private TextView tvwinner;
-    private String winner;
+    private String data;
+    private TextView tvWinner;
+    private TextView tvScorerList;
     public static final String EXTRA_RESULT = "EXTRA_RESULT";
+    Model model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        //bind view
         Intent intent = getIntent();
-        winner = intent.getStringExtra(EXTRA_RESULT);
+        data = intent.getStringExtra(EXTRA_RESULT);
 
-        tvwinner = findViewById(R.id.text_winner);
-        tvwinner.setText(winner);
+
+        //bind view
+        tvWinner = findViewById(R.id.tv_winner);
+        tvWinner.setText(data);
+        tvScorerList = findViewById(R.id.tv_scorer);
+       // Bundle extras = getIntent().getExtras();
+
+//        if(extras != null){
+//            String scorerName = "";
+//            if(model.getWinner().equals(model.getHomeName())){
+//                for (String win : model.getHomeScorer()) {
+//                    scorerName += win + "\n";
+//                }
+//                tvWinner.setText("The winner is " + model.getWinner());
+//                tvScorerList.setText(scorerName);
+//            }else if(model.getWinner().equals(model.getAwayName())){
+//                for (String win : model.getHomeScorer()) {
+//                    scorerName += win + "\n";
+//                }
+//                tvWinner.setText("The winner is " + model.getWinner());
+//                tvScorerList.setText(scorerName);
+//            }
+//            else{
+//                tvWinner.setText("The Result is Draw");
+//            }
+//        }
+
     }
 }

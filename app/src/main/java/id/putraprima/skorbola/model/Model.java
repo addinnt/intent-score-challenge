@@ -1,5 +1,6 @@
 package id.putraprima.skorbola.model;
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,27 +15,24 @@ public class Model implements Parcelable {
     private String winner;
     private ArrayList<String> homeScorer = new ArrayList<>();
     private ArrayList<String> awayScorer = new ArrayList<>();
+    private String result = "";
 
     public Model(String homeName, String awayName) {
         this.homeName = homeName;
         this.awayName = awayName;
     }
 
-    public String addAwayScorer(String scorer_key){
-        String scorer = "";
-        for(String as : awayScorer){
-            scorer += as + "\n";
-        }
-        return scorer;
+    public void addHomeScore(String name){
+        homeScorer.add(name);
+        homeScore++;
     }
 
-    public String addHomeScorer(String scorer_key){
-        String scorer = "";
-        for(String hs : homeScorer){
-            scorer += hs + "\n";
-        }
-        return scorer;
+    public void addAwayScore(String name){
+        awayScorer.add(name);
+        awayScore++;
     }
+
+
 
     public String getHomeName() {
         return homeName;
@@ -69,7 +67,16 @@ public class Model implements Parcelable {
     }
 
     public String getWinner() {
-        return winner;
+
+        if(homeScore > awayScore){
+            return homeName;
+        }
+        else if( homeScore < awayScore){
+            return awayName;
+        }
+        else{
+            return "draw";
+        }
     }
 
     public void setWinner(String winner) {
@@ -92,8 +99,12 @@ public class Model implements Parcelable {
         this.awayScorer = awayScorer;
     }
 
-    public static Creator<Model> getCREATOR() {
-        return CREATOR;
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     protected Model(Parcel in) {
@@ -104,22 +115,7 @@ public class Model implements Parcelable {
         winner = in.readString();
         homeScorer = in.createStringArrayList();
         awayScorer = in.createStringArrayList();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(homeName);
-        dest.writeString(awayName);
-        dest.writeInt(homeScore);
-        dest.writeInt(awayScore);
-        dest.writeString(winner);
-        dest.writeStringList(homeScorer);
-        dest.writeStringList(awayScorer);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        result = in.readString();
     }
 
     public static final Creator<Model> CREATOR = new Creator<Model>() {
@@ -133,4 +129,21 @@ public class Model implements Parcelable {
             return new Model[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(homeName);
+        parcel.writeString(awayName);
+        parcel.writeInt(homeScore);
+        parcel.writeInt(awayScore);
+        parcel.writeString(winner);
+        parcel.writeStringList(homeScorer);
+        parcel.writeStringList(awayScorer);
+        parcel.writeString(result);
+    }
 }
