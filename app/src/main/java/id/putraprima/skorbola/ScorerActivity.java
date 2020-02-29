@@ -14,7 +14,9 @@ import id.putraprima.skorbola.model.Model;
 public class ScorerActivity extends AppCompatActivity {
 
     private EditText etScorer;
+    private EditText etTime;
     public static final String ADD_SCORER_KEY = "add";
+    public static final String ADD_TIME_KEY = "time";
 
 
 
@@ -24,11 +26,14 @@ public class ScorerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scorer);
         //bind view
         etScorer= findViewById(R.id.scorerInput);
+        etTime = findViewById(R.id.timeInput);
+
     }
 
     public void handleSubmitScorer(View view) {
         Intent intent = new Intent();
         intent.putExtra(ADD_SCORER_KEY, etScorer.getText().toString());
+        intent.putExtra(ADD_TIME_KEY, etTime.getText().toString());
         setResult(RESULT_OK, intent);
         finish();
 

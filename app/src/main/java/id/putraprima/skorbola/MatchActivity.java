@@ -30,6 +30,7 @@ public class MatchActivity extends AppCompatActivity {
     private String scorer;
     public static final String DATA_KEY = "data";
     public static final String ADD_KEY = "add";
+    private static final String TIME_KEY = "time";
     public static final int HOME_SCORER_REQUEST_CODE = 1;
     public static final int AWAY_SCORER_REQUEST_CODE = 2 ;
 
@@ -92,7 +93,7 @@ public class MatchActivity extends AppCompatActivity {
             intent.putExtra(ResultActivity.EXTRA_RESULT,winner);
         }
         else if(model.getHomeScore()==model.getAwayScore()){
-            winner = " ";
+            winner = "RESULT IS DRAW";
             intent.putExtra(ResultActivity.EXTRA_RESULT,winner);
         }
 
@@ -108,14 +109,14 @@ public class MatchActivity extends AppCompatActivity {
         if(requestCode == HOME_SCORER_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 //tambah score
-                model.addHomeScore(data.getStringExtra(ADD_KEY));
+                model.addHomeScore(data.getStringExtra(ADD_KEY), data.getStringExtra(TIME_KEY));
                 //print score
                 homeScore.setText(String.valueOf(model.getHomeScore()));
                 //print pemain
                 homeScorer.setText(model.getHomeScorer().toString());
             }
         } else if (requestCode == AWAY_SCORER_REQUEST_CODE){
-            model.addAwayScore(data.getStringExtra(ADD_KEY));
+            model.addAwayScore(data.getStringExtra(ADD_KEY), data.getStringExtra(TIME_KEY));
             //print score
             awayScore.setText(String.valueOf(model.getAwayScore()));
             //print pemain

@@ -22,13 +22,13 @@ public class Model implements Parcelable {
         this.awayName = awayName;
     }
 
-    public void addHomeScore(String name){
-        homeScorer.add(name);
+    public void addHomeScore(String name, String time){
+        homeScorer.add(name+", "+time+"'");
         homeScore++;
     }
 
-    public void addAwayScore(String name){
-        awayScorer.add(name);
+    public void addAwayScore(String name, String time){
+        awayScorer.add(name+", "+time+"'");
         awayScore++;
     }
 
